@@ -1,5 +1,5 @@
-from files.client.client import client
-from files.server.server import server
+from .files.client.client import client
+from .files.server.server import server
 
 
 

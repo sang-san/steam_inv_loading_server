@@ -1,4 +1,4 @@
-from main import server
+from files.server.server import server
 
 
 
