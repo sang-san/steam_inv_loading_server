@@ -16,7 +16,7 @@ class server:
         ])
     
     def get_proxy(self):
-        return random.sample(self.proxys, 1) if self.proxys else ""
+        return random.sample(self.proxys, 1)[0] if self.proxys else ""
 
     async def ping(self, request):
         print(f"Got pinged by {request.remote} {time.time()}")
