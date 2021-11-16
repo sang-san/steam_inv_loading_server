@@ -1,7 +1,7 @@
 import aiohttp
 import requests
 from steam.trade import Inventory
-
+import steam
 class client:
     def __init__(self, server_url) -> None:
         self.server_url = server_url
@@ -37,6 +37,6 @@ class client:
                 print("post check")
 
 
-                inv = Inventory("nothing", json_data["data"], steam_id)
+                inv = Inventory("nothing", json_data["data"], steam_id, steam.TF2)
                 print("post inv")
                 return True, inv    
