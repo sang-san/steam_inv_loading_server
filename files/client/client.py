@@ -29,8 +29,8 @@ class client:
                 print(f"Made Inv Request: {resp.status}")
                 json_data = await resp.json()
                 if resp.status != 200 or json_data["request_status_code"] != 200 or json_data["success"] == False:
-                    print(f"inventory load failed, code {resp.status_code} json resp: {json_data}")
-                    return False, f"inventory load failed, code {resp.status_code} json resp: {json_data}"
+                    print(f"inventory load failed, code direct {resp.status} {json_data['request_status_code']} json resp: {json_data}")
+                    return False, f"inventory load failed, code {json_data['request_status_code']} json resp: {json_data}"
 
 
                 inv = Inventory("nothing", json_data["data"], steam_id, steam.TF2)
