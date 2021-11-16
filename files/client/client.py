@@ -27,14 +27,16 @@ class client:
         async with aiohttp.ClientSession() as session:
             async with session.get(url, headers=headers) as resp:
                 print(f"Made Inv Request: {resp.status}")
-
+                print("pre json load")
                 json_data = await resp.json()
-                
+                print("post json load")
                 if resp.status != 200 or json_data["request_status_code"] != 200 or json_data["success"] == False:
                     print(f"inventory load failed, code {resp.status_code} json resp: {json_data}")
                     return False, f"inventory load failed, code {resp.status_code} json resp: {json_data}"
 
+                print("post check")
 
 
                 inv = Inventory("nothing", json_data["data"], steam_id)
+                print("post inv")
                 return True, inv    
