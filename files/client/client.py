@@ -30,7 +30,7 @@ class client:
 
                 json_data = await resp.json()
                 
-                if resp.status != 200 or json_data["success"] == False:
+                if resp.status != 200 or json_data["request_status_code"] != 200 or json_data["success"] == False:
                     print(f"inventory load failed, code {resp.status_code} json resp: {json_data}")
                     return False, f"inventory load failed, code {resp.status_code} json resp: {json_data}"
 
