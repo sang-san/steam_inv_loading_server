@@ -8,6 +8,7 @@ class client:
 
         self.ping()
         
+        
     def ping(self):
         res = (requests.get(f"{self.server_url}/ping"))
         
