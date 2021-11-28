@@ -1,12 +1,13 @@
 import aiohttp
 import requests
 from steam.trade import Inventory
-
+import steam
 class client:
     def __init__(self, server_url) -> None:
         self.server_url = server_url
 
         self.ping()
+        
         
     def ping(self):
         res = (requests.get(f"{self.server_url}/ping"))
@@ -27,14 +28,11 @@ class client:
         async with aiohttp.ClientSession() as session:
             async with session.get(url, headers=headers) as resp:
                 print(f"Made Inv Request: {resp.status}")
-
                 json_data = await resp.json()
-                
-                if resp.status != 200 or json_data["success"] == False:
-                    print(f"inventory load failed, code {resp.status_code} json resp: {json_data}")
-                    return False, f"inventory load failed, code {resp.status_code} json resp: {json_data}"
+                if resp.status != 200 or json_data["request_status_code"] != 200 or json_data["success"] == False:
+                    print(f"inventory load failed, code direct {resp.status} {json_data['request_status_code']} json resp: {json_data}")
+                    return False, f"inventory load failed, code {json_data['request_status_code']} json resp: {json_data}"
 
 
-
-                inv = Inventory("nothing", json_data["data"], steam_id)
+                inv = Inventory("nothing", json_data["data"], steam_id, steam.TF2)
                 return True, inv    
