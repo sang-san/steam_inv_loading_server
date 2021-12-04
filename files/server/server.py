@@ -54,7 +54,7 @@ class server:
                 inv = Inventory("nothing", data, steam_id, steam.TF2)
                 for item in inv.items:
                     if not item.name in return_data:
-                        return_data[item.name] = str(item.asset_id)
+                        return_data[item.name] = [str(item.asset_id)]
 
                     else:
                         return_data[item.name].append(str(item.asset_id))
